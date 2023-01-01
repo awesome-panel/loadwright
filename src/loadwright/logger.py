@@ -10,6 +10,8 @@ import param
 TEST_RESULTS_PATH = "test_results"
 TEST_RESULTS_FILE = "loadwright.csv"
 
+DEFAULT_LOADWRIGHT_FILE = Path(TEST_RESULTS_PATH) / Path(TEST_RESULTS_FILE)
+
 
 class Logger(param.Parameterized):
     """Used to log events while running a LoadTestRunner"""

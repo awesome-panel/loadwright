@@ -1,12 +1,15 @@
-# ✨ loadwright
+# ✨ Loadwright
 
 We want to
 
-- INSERT THE WHY
+- Make it really easy to load test data apps in Python and get useful insights
 
 We provide
 
-- INSERT THE WHAT
+- A `LoadTestRunner` that can record complex `User` interactions with your data app
+- A `LoadTestViewer` that can show you the results of the recording.
+
+The framework is based on [Playwright](https://playwright.dev/python/) and [Panel](https://panel.holoviz.org).
 
 You can install and use the package as simple as.
 
@@ -14,39 +17,15 @@ You can install and use the package as simple as.
 pip install loadwright
 ```
 
-```python
-import loadwright
-INSERT A SHORT EXAMPLE
-```
+See the [`tests`](tests) folder for examples
 
-![Project Intro](assets/videos/project-intro.gif)
+![Project Intro](https://user-images.githubusercontent.com/42288570/210130957-92dee566-4fcf-4a02-a8ee-830af6297307.gif)
 
-REPLACE THE INTRO VIDEO
+Please note this project is at a **very early stage an the api and functionality will change**!
 
-## 🚀 Get started in under a minute
+## Why not Locust
 
-Install `loadwright` including the *`examples` dependencies*.
-
-```bash
-pip install  loadwright[examples]
-```
-
-Explore the sample apps
-
-```bash
-pn hello loadwright
-```
-
-![Project Intro](https://raw.githubusercontent.com/awesome-panel/loadwright/main/assets/videos/pn-hello-loadwright.gif)
-
-You can now find the *reference* and *gallery* notebooks in the `examples/awesome-panel/loadwright` folder. Check them out by running `jupyter lab`.
-
-## 📒 Explore the examples online
-
-Click one of the buttons
-
-[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/awesome-panel/loadwright/tree/main/examples/)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/awesome-panel/loadwright/HEAD)
+I love Locust. But Locust and Playwright just does not work well for me. See [locust-plugins #101](https://github.com/SvenskaSpel/locust-plugins/issues/101#issuecomment-1367216919). And this gave me an oppportunity to play with Panel+Async+Streaming.
 
 ## ⭐ Support
 

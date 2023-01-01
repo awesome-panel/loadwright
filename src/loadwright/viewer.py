@@ -11,6 +11,7 @@ import param
 from bokeh.models import HoverTool
 
 from loadwright.io import read_loadwright_file
+from loadwright.logger import DEFAULT_LOADWRIGHT_FILE
 
 
 class LoadTestViewer(pn.viewable.Viewer):
@@ -26,6 +27,8 @@ class LoadTestViewer(pn.viewable.Viewer):
     data = param.DataFrame()
 
     def __init__(self, data: str | Path | pd.DataFrame | None = None, **params):
+        if data is None:
+            data = DEFAULT_LOADWRIGHT_FILE
         if isinstance(data, (str, Path)):
             data = read_loadwright_file(data)
         super().__init__(data=data, **params)
@@ -81,7 +84,7 @@ class LoadTestViewer(pn.viewable.Viewer):
         plot.opts(color="color", line_width=20, tools=[hover], xlim=self._xlim)
         return plot
 
-    @pn.depends("max_load_duration", "max_interaction_duration", "data")
+    @pn.depends("max_load_duration", "max_interaction_duration", "aggregation", "data")
     def duration_plot(self):
         """Returns a HoloViews plot of time vs event duration"""
         data = self.data.copy()

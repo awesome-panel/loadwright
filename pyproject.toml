@@ -51,6 +51,7 @@ authors = [
 dev = [
     "awesome-panel-cli[dev]",
     "pytest-playwright",
+    "pytest-async",
 ]
 examples = [
     "awesome-panel-cli",

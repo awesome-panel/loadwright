@@ -4,6 +4,6 @@ from loadwright.runner import LoadTestRunner
 from loadwright.user import User
 from loadwright.viewer import LoadTestViewer
 
-VERSION = "0.0.0"
+VERSION = "0.1.0"
 
 __all__ = ["read_loadwright_file", "LoadTestRunner", "User", "LoadTestViewer"]
