@@ -97,6 +97,7 @@ module = [
     "hvplot.*",
     "param.*",
     "pyviz_comms.*",
+    "pandas",
 ]
 ignore_missing_imports = true
 

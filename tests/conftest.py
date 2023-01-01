@@ -1,14 +1,17 @@
-# conftest.py
 """Shared configuration and fixtures for testing Panel"""
+# pylint: disable=protected-access
 import panel as pn
 import pytest
 
 PORT = [6000]
 
+
 @pytest.fixture
 def port():
+    """Returns an available port number"""
     PORT[0] += 1
     return PORT[0]
+
 
 @pytest.fixture(autouse=True)
 def server_cleanup():
