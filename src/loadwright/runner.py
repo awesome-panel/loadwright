@@ -25,16 +25,17 @@ class LoadTestRunner(pn.viewable.Viewer):
     user: User = param.Selector(objects=[User()])
 
     def __init__(self, user: User|None=None, users: List[User] | None=None, **params):
+        params["logger"]=params.get("logger", Logger())
+        super().__init__(**params)
+
         if user and not users:
             users=[user]
         if users:
             self.param.user.objects=users
         if user:
-            self.param.user.default=user
-        if not self.param.user.default in self.param.user.objects and self.param.user.objects:
-            self.param.user.default = self.param.user.objects[0]
-        params["logger"]=params.get("logger", Logger())
-        super().__init__(**params)
+            self.user = self.param.user.default=user
+        elif not self.param.user.default in self.param.user.objects and self.param.user.objects:
+            self.user = self.param.user.default = self.param.user.objects[0]
 
     async def _create_task(self, index, browser, **kwargs):
         await asyncio.sleep(delay=index*self.user_delay)

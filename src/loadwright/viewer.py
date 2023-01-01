@@ -20,16 +20,10 @@ class LoadTestViewer(pn.viewable.Viewer):
     max_interaction_duration = param.Number(1.0, bounds=(0.1, 5.0), step=0.1)
     aggregation = param.Selector(objects=["None", "Median", "Mean", "Min", "Max"])
     data = param.DataFrame()
-    periodic_callback = param.Parameter()
-    file = param.String("test_results/load_test.csv")
 
-    def __init__(self, add_periodic_callback: bool=False, **params):
+    def __init__(self, **params):
         super().__init__(**params)
-        if not "data" in params:
-            self.read()
-        
-        # self.data = self.clean(data=self.data)
-
+                
         self._view = pn.Column(
             pn.Param(self, parameters=["max_load_duration", "max_interaction_duration"]),
             self.segment_plot,
@@ -38,26 +32,8 @@ class LoadTestViewer(pn.viewable.Viewer):
             self.active_users,
         )
 
-        if not self.periodic_callback:
-            self.periodic_callback = pn.state.add_periodic_callback(self.read, period=2000, start=add_periodic_callback)
-
     def __panel__(self):
         return self._view
-
-    def read(self):
-        try:
-            self.data = pd.read_csv(self.file, parse_dates=["start", "stop"], dtype={"user": "str"}, index_col=0)
-        except Exception as ex:
-            print(ex)
-            raise Exception() from ex
-
-    @staticmethod
-    def clean(data):
-        data = data.copy(deep=True)
-        data["start_seconds"]=(data["start"]-data["start"].min()).dt.total_seconds()
-        data["stop_seconds"]=(data["stop"]-data["start"].min()).dt.total_seconds()
-
-        return data
 
     @pn.depends("max_load_duration", "max_interaction_duration", "data")
     def segment_plot(self):

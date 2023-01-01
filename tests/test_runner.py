@@ -26,3 +26,14 @@ class LoadAndClickUser(User):
 async def test_component_2(port=6001):
     async with LoadTestRunner.serve(App, port=port) as host:
         await LoadTestRunner(host=host, headless=False, user=LoadAndClickUser(), n_users=2).run()
+
+def test_custom_user():
+    org_user = LoadTestRunner.param.user.default
+    assert not isinstance(org_user, LoadAndClickUser)
+
+    user=LoadAndClickUser()
+    runner = LoadTestRunner(user=user)
+    assert runner.user == user
+
+    assert LoadTestRunner.param.user.default == org_user
+
