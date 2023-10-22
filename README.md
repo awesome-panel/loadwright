@@ -17,7 +17,7 @@ You can install and use the package as simple as.
 pip install loadwright
 ```
 
-See the [`tests`](tests) folder for examples or the preliminary [Panel How to test guide](https://github.com/holoviz/panel/blob/feature/document-test/doc/how_to/test/test.md#test-advanced-interactions-with-loadwright).
+See the [`tests`](tests) folder for examples or the [Panel test operating capacity howto](https://panel.holoviz.org/how_to/test/loadtests.html).
 
 ![Project Intro](https://user-images.githubusercontent.com/42288570/210130957-92dee566-4fcf-4a02-a8ee-830af6297307.gif)
 
